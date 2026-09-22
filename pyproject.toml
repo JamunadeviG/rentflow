@@ -1,7 +1,7 @@
 [project]
 name = "rentflow"
 authors = [
-    { name = "Jamunadevi G", email = "jamunadevig.2006@gmail.com"}
+    { name = "JamunadeviG", email = "jamunadevig.2006@gmail.com"}
 ]
 description = "Anchor Point rents power drills, generators, and scaffold towers to contractors and event planners. Bookings live on a whiteboard; condition checks are paper forms stapled to invoices. Double-bookings and disputed damage charges happen most weeks."
 requires-python = ">=3.14"
