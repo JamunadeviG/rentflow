@@ -1,5 +1,5 @@
 app_name = "rentflow"
-app_title = "rentflow"
+app_title = "Rentflow"
 app_publisher = "JamunadeviG"
 app_description = "Anchor Point rents power drills, generators, and scaffold towers to contractors and event planners. Bookings live on a whiteboard; condition checks are paper forms stapled to invoices. Double-bookings and disputed damage charges happen most weeks."
 app_email = "jamunadevig.2006@gmail.com"
@@ -15,7 +15,7 @@ app_license = "mit"
 # 	{
 # 		"name": "rentflow",
 # 		"logo": "/assets/rentflow/logo.png",
-# 		"title": "rentflow",
+# 		"title": "Rentflow",
 # 		"route": "/rentflow",
 # 		"has_permission": "rentflow.api.permission.has_app_permission"
 # 	}
