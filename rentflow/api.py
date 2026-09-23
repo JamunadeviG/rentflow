@@ -22,7 +22,7 @@ def reassign_bookings(from_staff, to_staff):
             UPDATE `tabRental Booking`
             SET handled_by = %s
             WHERE handled_by = %s
-              AND status = 'Open'
+              AND status = 'Confirmed'
             """,
             (to_staff, from_staff)
         )
