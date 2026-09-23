@@ -83,7 +83,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-09-22 16:45:24.494555",
+ "modified": "2026-09-23 10:58:38.820747",
  "modified_by": "Administrator",
  "module": "Rentflow",
  "name": "Rental Invoice",
@@ -100,6 +100,27 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
+   "write": 1
+  },
+  {
+   "print": 1,
+   "read": 1,
+   "role": "Front_Desk"
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rentflow Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],

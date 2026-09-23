@@ -5,6 +5,20 @@ app_description = "Anchor Point rents power drills, generators, and scaffold tow
 app_email = "jamunadevig.2006@gmail.com"
 app_license = "mit"
 
+
+fixtures = [
+    {
+        "dt": "Role",
+        "filters": [
+            ["name", "in", ["RentFlow Manager", "Front_Desk", "Inspector"]]
+        ]
+    }
+]
+
+permission_query_conditions = {
+    "Rental Booking": "rentflow.api.rental_booking_query"
+}
+
 # Apps
 # ------------------
 

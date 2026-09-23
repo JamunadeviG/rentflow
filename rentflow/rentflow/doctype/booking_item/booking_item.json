@@ -52,8 +52,7 @@
    "fieldname": "line_amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Line Amount",
-   "read_only": 1
+   "label": "Line Amount"
   },
   {
    "allow_on_submit": 1,
@@ -86,7 +85,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-09-22 16:10:49.162036",
+ "modified": "2026-09-22 18:58:21.897797",
  "modified_by": "Administrator",
  "module": "Rentflow",
  "name": "Booking Item",
