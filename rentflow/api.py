@@ -97,3 +97,19 @@ def safe_bookings():
             booking.pop("customer_email", None)
 
     return bookings
+
+
+@frappe.whitelist()
+def transfer_handler(booking_name, new_handler):
+	booking = frappe.get_doc("Rental Booking", booking_name)
+
+	if booking.status in ["Cancelled", "Closed"]:
+		frappe.throw("Handler cannot be transferred for this booking.")
+
+	if not frappe.db.exists("Yard Staff", new_handler):
+		frappe.throw("Yard Staff does not exist.")
+
+	booking.handled_by = new_handler
+	booking.save()
+
+	return {"message": "Handler transferred successfully"}
