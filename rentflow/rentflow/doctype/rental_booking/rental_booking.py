@@ -25,12 +25,31 @@ class RentalBooking(Document):
 			frappe.db.set_value("Equipment Unit", row.equipment_unit, 'current_status', "Reserved")
 		self.create_rental_invoice()
 		self.enqueue_booking_confirmation_email()
-
+	
 	def on_cancel(self):
 		self.status = "Cancelled"
 		for row in self.items or []:
-			frappe.db.set_value("Equipment Unit", row.equipment_unit, 'current_status', "Available")
+			if row.equipment_unit:
+				frappe.db.set_value("Equipment Unit", row.equipment_unit, "current_status", "Available")
 
+		invoice_name = frappe.db.get_value("Rental Invoice", {"rental_booking": self.name}, "name")
+
+		if invoice_name:
+			payment_status = frappe.db.get_value("Rental Invoice", invoice_name, "payment_status")
+
+			if payment_status == "Unpaid":
+				invoice = frappe.get_doc("Rental Invoice", invoice_name)
+
+				if invoice.docstatus == 1:
+					invoice.cancel()
+
+
+	def on_trash(self):
+		if self.status not in ("Cancelled", "Draft"):
+			frappe.throw(f"Rental Booking {self.name} cannot be deleted because its status is '{self.status}'. Only Draft or Cancelled bookings can be deleted.")
+
+	def on_update(self):
+		self.cal_rental_damage_final_total()
 
 	def validate_dates(self):
 		start_date = getdate(self.start_date)

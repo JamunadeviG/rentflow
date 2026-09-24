@@ -19,6 +19,16 @@ permission_query_conditions = {
     "Rental Booking": "rentflow.api.rental_booking_query"
 }
 
+after_install = "rentflow.install.after_install"
+
+doc_events = {
+	"*": {
+		"on_update": "rentflow.audit.log_change",
+		"on_submit": "rentflow.audit.log_change",
+		"on_cancel": "rentflow.audit.log_change"
+	}
+}
+
 # Apps
 # ------------------
 
