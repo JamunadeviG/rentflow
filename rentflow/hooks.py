@@ -29,6 +29,12 @@ doc_events = {
 	}
 }
 
+jinja = {
+    "methods": [
+        "rentflow.utils.get_shop_name"
+    ]
+}
+
 # Apps
 # ------------------
 

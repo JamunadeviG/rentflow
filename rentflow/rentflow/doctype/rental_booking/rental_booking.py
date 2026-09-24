@@ -8,6 +8,12 @@ from frappe.utils import getdate
 
 class RentalBooking(Document):
 
+	def before_print(self, print_settings=None):
+		self.print_summary = (
+			f"{self.customer_name} - "
+			f"{self.start_date} to {self.end_date}"
+		)
+
 	def validate(self):
 		self.validate_dates()
 		self.check_for_duplicate()
