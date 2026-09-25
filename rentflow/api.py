@@ -2,6 +2,7 @@ import frappe
 from frappe import _
 from frappe.query_builder import DocType
 from datetime import date
+from frappe.utils import today
 
 
 
@@ -113,3 +114,20 @@ def transfer_handler(booking_name, new_handler):
 	booking.save()
 
 	return {"message": "Handler transferred successfully"}
+
+
+def flag_overdue_returns():
+	overdue_bookings = frappe.get_list("Rental Booking", filters={"status": "Checked Out", "end_date": ["<", today()]}, fields=["name", "customer_name", "end_date"])
+
+	for booking in overdue_bookings:
+		frappe.log_error(title="Overdue Rental Booking", message=f"Booking: {booking.name}\nCustomer: {booking.customer_name}\nEnd Date: {booking.end_date}")
+
+	frappe.get_doc({
+		"doctype": "Audit Log",
+		"doctype_name": "Scheduler",
+		"document_name": "Daily Overdue Return Check",
+		"action": "overdue_check",
+		"user": frappe.session.user,
+		"timestamp": frappe.utils.now(),
+		"date": today()
+	}).insert(ignore_permissions=True)

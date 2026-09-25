@@ -10,7 +10,8 @@
   "document_name",
   "action",
   "user",
-  "timestamp"
+  "timestamp",
+  "date"
  ],
  "fields": [
   {
@@ -43,12 +44,17 @@
    "fieldtype": "Datetime",
    "in_list_view": 1,
    "label": "Timestamp"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-24 11:11:32.465555",
+ "modified": "2026-09-25 12:26:46.320483",
  "modified_by": "Administrator",
  "module": "Rentflow",
  "name": "Audit Log",

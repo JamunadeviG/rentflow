@@ -35,6 +35,14 @@ jinja = {
     ]
 }
 
+scheduler_events = {
+	"cron": {
+		"*/1 * * * *": [
+			"rentflow.api.flag_overdue_returns"
+		]
+	}
+}
+
 # Apps
 # ------------------
 

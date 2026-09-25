@@ -44,3 +44,20 @@ frappe.get_doc() loads complete RentFlow Settings doc, which is unnecessary when
 
 `frappe.get_all()` in Jinja directly fetches data while printing, which can make the template messy.
 Using `before_print()` prepares the data first, so Jinja only displays it and stays simple.
+
+
+
+<!-- ----------------------------------------------- -->
+
+bookings = frappe.get_all(
+    "Rental Booking",
+    fields=["name", "handled_by"]
+)
+
+staff = frappe.get_all(
+    "Yard Staff",
+    filters={"name": ["in", [b.handled_by for b in bookings if b.handled_by]]},
+    fields=["name", "staff_name", "phone"]
+)
+
+The original code causes an N+1 problem, because the doctype might have 100 data and it takes loop through each of the doc and takes the staff that might already taken, the goal is to get only the stapps mapped with handled by, but here it takes same staff more than one time
