@@ -47,7 +47,7 @@ Using `before_print()` prepares the data first, so Jinja only displays it and st
 
 
 
-<!-- ----------------------------------------------- -->
+<!-- ---------------------K2 — Spot the N+1-------------------------- -->
 
 bookings = frappe.get_all(
     "Rental Booking",
@@ -60,4 +60,20 @@ staff = frappe.get_all(
     fields=["name", "staff_name", "phone"]
 )
 
-The original code causes an N+1 problem, because the doctype might have 100 data and it takes loop through each of the doc and takes the staff that might already taken, the goal is to get only the stapps mapped with handled by, but here it takes same staff more than one time
+The original code causes an N+1 problem, because the doctype might have 100 data and it takes loop through each of the doc and takes the staff that might already taken, the goal is to get only the stapps mapped with handled by, but here it takes same staff more than one time.
+
+
+
+<!-- ------------------------N1 — ignore_permissions Audit & JS-Hiding Pitfall------------------------------ -->
+
+grep -R "ignore_permissions=True" apps/rentflow/rentflow/   (Using grep command we can retrieve ignore_permission in all the files)
+apps/rentflow/rentflow/install.py:                      doc.insert(ignore_permissions=True)
+apps/rentflow/rentflow/install.py:              settings.insert(ignore_permissions=True)
+apps/rentflow/rentflow/audit.py:        audit_log.insert(ignore_permissions=True)
+apps/rentflow/rentflow/rentflow/doctype/rental_booking/rental_booking.py:               invoice.insert(ignore_permissions=True)
+apps/rentflow/rentflow/api.py:  }).insert(ignore_permissions=True)
+
+JUSTIFICATION: The system itself inserting the data so bypassing the permission is acceptable
+
+Question: Explain why hiding a field in JavaScript is not a security measure.
+Answer: Hide will not restrict the non-manager from their basic permission to DB, even if we hide it in the UI, it will be visible in the DB. 
