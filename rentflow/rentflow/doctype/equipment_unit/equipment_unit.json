@@ -26,6 +26,7 @@
   {
    "fieldname": "category",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Category",
    "options": "Equipment Category",
    "reqd": 1
@@ -42,6 +43,7 @@
    "default": "Available",
    "fieldname": "current_status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Current Status",
    "options": "Available\nReserved\nRented\nUnder Repair\nRetired"
@@ -61,7 +63,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-23 11:02:53.324996",
+ "modified": "2026-09-25 14:03:09.127715",
  "modified_by": "Administrator",
  "module": "Rentflow",
  "name": "Equipment Unit",

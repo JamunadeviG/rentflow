@@ -60,10 +60,10 @@ function check_rental_period(frm) {
 
 	let start_date = frappe.datetime.str_to_obj(frm.doc.start_date);
 	let end_date = frappe.datetime.str_to_obj(frm.doc.end_date);
-    if (days > 30) {
+	let days = frappe.datetime.get_day_diff(frm.doc.end_date, frm.doc.start_date) + 1;
+	if (days > 30) {
 		frappe.msgprint("Rental period is more than 30 days. Please verify the dates.");
 	}
-	let days = frappe.datetime.get_day_diff(frm.doc.end_date, frm.doc.start_date) + 1;
 	if (start_date > end_date) {
 		return;
 	}

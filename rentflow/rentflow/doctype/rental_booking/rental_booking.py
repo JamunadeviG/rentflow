@@ -152,16 +152,8 @@ class RentalBooking(Document):
 
 def send_booking_confirmed_email(booking_name):
 
-	booking = frappe.get_doc(
-		"Rental Booking",
-		booking_name
-	)
-
-	customer_email = frappe.db.get_value(
-		"Customer",
-		booking.customer,
-		"email"
-	)
+	booking = frappe.get_doc("Rental Booking", booking_name)
+	customer_email = frappe.db.get_value("Customer", booking.customer, "email")
 
 	if not customer_email:
 		return

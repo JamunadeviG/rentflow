@@ -131,3 +131,31 @@ def flag_overdue_returns():
 		"timestamp": frappe.utils.now(),
 		"date": today()
 	}).insert(ignore_permissions=True)
+
+
+
+@frappe.whitelist()
+def get_booking_status(booking_name):
+    booking_name = frappe.form_dict.get("booking_name")
+
+    if not booking_name:
+        frappe.local.response.http_status_code = 404
+        return {"error": "Not found"}
+
+    booking = frappe.db.get_value(
+        "Rental Booking",
+        booking_name,
+        ["name", "status", "start_date", "end_date"],
+        as_dict=True
+    )
+
+    if not booking:
+        frappe.local.response.http_status_code = 404
+        return {"error": "Not found"}
+
+    return {
+        "name": booking.name,
+        "status": booking.status,
+        "start_date": booking.start_date,
+        "end_date": booking.end_date
+    }
